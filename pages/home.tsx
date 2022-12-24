@@ -39,7 +39,7 @@ const Dashboard: NextPageWithLayout = (props: DashboardProp) => {
 
   const changeStatus = (oid: number) => {
     Swal.fire({
-      title: activeTab == 2 ? "Đã nhận đồ ship?" : "Đã giao hàng thành công?",
+      title: "Đã nấu xong?",
       showCancelButton: true,
       confirmButtonText: "Xác nhận",
       cancelButtonText: `Chưa xác nhận`,
@@ -47,7 +47,7 @@ const Dashboard: NextPageWithLayout = (props: DashboardProp) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         updateOrderChief.mutate(
-          { id: oid, data: { status: activeTab + 1 } },
+          { id: oid, data },
           {
             onSuccess: async (data) => {
               Swal.fire("Thành công!", "", "success");
@@ -67,45 +67,34 @@ const Dashboard: NextPageWithLayout = (props: DashboardProp) => {
       <AuthLoader>
         <div className="grid py-4 ">
           {/* Button tab */}
-          <div className="max-h-[60px] order-state-box flex gap-4 justify-between items-center bg-gray-100 py-2 px-8 w-full rounded-lg">
+          <div className="max-h-[60px] order-state-box flex gap-3 justify-between items-center bg-gray-100 py-2 px-8 w-full rounded-lg">
             <button
               className={
                 // @ts-ignore
-                `state-item py-[0.3rem] px-4  text-gray-800 rounded-full font-pr ${
+                `state-item py-[0.3rem] px-8 text-sm text-gray-800 rounded-full font-pr ${
                   activeTab === 2 && " bg-yell !text-white"
                 }`
               }
               data-tabIndex={2}
               onClick={() => setActiveTab(2)}
             >
-              Chờ ship
+              Chờ nấu
             </button>
             <button
               className={
                 // @ts-ignore
-                `state-item py-[0.3rem] px-4  text-gray-800 rounded-full font-pr ${
+                `state-item py-[0.3rem] px-8 text-sm text-gray-800 rounded-full font-pr ${
                   activeTab === 3 && " bg-yell !text-white"
                 }`
               }
               onClick={() => setActiveTab(3)}
             >
-              Đang giao
-            </button>
-            <button
-              className={
-                // @ts-ignore
-                `state-item py-[0.3rem] px-4  text-gray-800 rounded-full font-pr ${
-                  activeTab === 4 && " bg-yell !text-white"
-                }`
-              }
-              onClick={() => setActiveTab(4)}
-            >
-              Hoàn thành
+              Đã nấu xong
             </button>
           </div>
           {/* Order List */}
           <div className="order-list grid gap-5 mt-6">
-            {/* {dataOrder ? (
+            {dataOrder ? (
               // @ts-ignore
               dataOrder.map((item: any, index: number) => (
                 <OrderItem
@@ -116,7 +105,7 @@ const Dashboard: NextPageWithLayout = (props: DashboardProp) => {
               ))
             ) : (
               <p>Loading...</p>
-            )} */}
+            )}
           </div>
         </div>
       </AuthLoader>
