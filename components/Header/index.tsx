@@ -11,7 +11,12 @@ const Header = ({ openDrawer, profile }: Props) => {
   console.log(profile);
 
   return (
-    <div className={styles.shadow + " px-4 py-3 bg-gray-50 flex items-center"}>
+    <div
+      className={
+        styles.shadow +
+        " px-4 py-3 bg-gray-50 flex items-center max-w-[500px] mx-auto w-full"
+      }
+    >
       <div className="overflow-hidden relative w-[40px] h-[40px] grid place-content-center ">
         👋🏻
       </div>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -33,21 +34,15 @@ const OrderItem = ({ order, changeStatus }: Props) => {
         <div className="name-box">
           <div>
             <h1 className="text-xl font-bold text-purple font-pr">
-              {order.user?.name} - {order.location.address}
+              {/* @ts-ignore */}
+              {order.user ? order.user.name : order.name} -{" "}
+              {order.location.address}
               {order.location_detail && "- " + order.location_detail}
             </h1>
           </div>
-          {order.status <= 4 && (
+          {order.status == 2 && (
             <div>
               <div className="mt-1 flex justify-start">
-                <StatusBadge
-                  color={order.payment_status == 0 ? "warning" : "success"}
-                  title={
-                    order.payment_status == 0
-                      ? "Chưa thanh toán"
-                      : "Đã thanh toán"
-                  }
-                />
                 {waitingTime > (order.location.distance * 70) / 100 && (
                   <StatusBadge color="pending" title="Chờ lâu" />
                 )}
@@ -55,7 +50,7 @@ const OrderItem = ({ order, changeStatus }: Props) => {
             </div>
           )}
         </div>
-        {order.status <= 4 && (
+        {order.status == 2 && (
           <div className="action-box ml-auto flex gap-2">
             <a
               href={`tel:${order.phone}`}

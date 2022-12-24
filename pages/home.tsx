@@ -65,7 +65,7 @@ const Dashboard: NextPageWithLayout = (props: DashboardProp) => {
   return (
     <>
       <AuthLoader>
-        <div className="grid py-4 ">
+        <div className="grid py-4 max-w-[500px] mx-auto">
           {/* Button tab */}
           <div className="max-h-[60px] order-state-box flex gap-3 justify-between items-center bg-gray-100 py-2 px-8 w-full rounded-lg">
             <button
