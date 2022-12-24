@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800&display=swap");
+
+:root {
+  --purple: #1b1b1b;
+  --yell: #ffcb40;
+  --font-primary: "Roboto Flex", sans-serif;
+}
+
+.text-purple {
+  color: var(--purple);
+}
+
+.text-yell {
+  color: var(--yell);
+}
+
+.bg-purple {
+  background-color: var(--purple);
+}
+
+.bg-yell {
+  background-color: var(--yell);
+}
+
+.font-pr {
+  font-family: var(--font-primary);
+}
+
+.btn-active {
+  background-color: var(--purple);
+}
+
+.success {
+  background-color: #34A853;
+}
+
+.warning {
+  background-color: #E84C4F;
+}
+
+.pending {
+  background-color: #FFCB40;
+}
