@@ -9,6 +9,7 @@ import { diff_hours } from "../../interfaces/common";
 import { OrderResponse } from "../../services/service";
 import { useQuery } from "@tanstack/react-query";
 import OApi from "../../services";
+import Swal from "sweetalert2";
 
 type Props = {
   order: OrderResponse;
@@ -25,6 +26,21 @@ const OrderItem = ({ order, changeStatus }: Props) => {
     setWaitingTime(diff_hours(orderDateTime, now));
   }, [waitingTime, order.created_at]);
 
+  const handleChangeStatus = () => {
+      //@ts-ignore
+      const checkLog = order.logs.find((item:any) => item.status == 2 );
+      if ( checkLog === undefined || !checkLog) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Món chưa nấu xong đâu. Check lại với bếp đơn này nhá!',
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+      else changeStatus(order.id)
+
+  }
   // console.log("Order Waiting Time: ", );
   return (
     <div
@@ -63,7 +79,7 @@ const OrderItem = ({ order, changeStatus }: Props) => {
           </button> */}
             <button
               className="call-btn bg-[#ffcb40] p-2 rounded-full "
-              onClick={() => changeStatus(order.id)}
+              onClick={() => handleChangeStatus()}
             >
               <IoCheckmark color="white" size={20} />
             </button>
