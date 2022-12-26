@@ -267,6 +267,14 @@ export interface LogResponse {
 }
 
 /**
+ * UserNotification Response
+ * Notification model
+ */
+export interface NotificationMultipleSeen {
+  ids?: number[];
+}
+
+/**
  * Notification Request
  * Notification model
  */
@@ -300,6 +308,7 @@ export interface UserNotificationResponse {
  */
 export interface OrderCreate {
   phone?: string;
+  name?: string;
   note?: string;
   location_id?: number;
   total?: number;
@@ -364,6 +373,7 @@ export interface OrderResponse {
   id?: number;
   status?: number;
   code?: string;
+  name?: string;
   phone?: string;
   total?: string;
   note?: string;
@@ -1115,10 +1125,55 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @summary Get list of notification
      * @request GET:/admin/notification
      */
-    getNotifies: (params: RequestParams = {}) =>
+    getNotifies: (
+      query?: {
+        /** start date of order */
+        start_date?: string;
+        /** end date of order */
+        end_date?: string;
+        /** limit size  */
+        limit?: string;
+        /** page size  */
+        page?: string;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<UserNotificationResponse, any>({
         path: `/admin/notification`,
         method: "GET",
+        query: query,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Returns updated Notification data
+     *
+     * @tags Notification
+     * @name SeenMultipleNotification
+     * @summary Update existing Notification
+     * @request PUT:/admin/multiple-seen-notice
+     */
+    seenMultipleNotification: (params: RequestParams = {}) =>
+      this.request<NotificationResponse, any>({
+        path: `/admin/multiple-seen-notice`,
+        method: "PUT",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Returns updated Notification data
+     *
+     * @tags Notification
+     * @name SeenNotification
+     * @summary Update existing Notification
+     * @request PUT:/admin/notification/{id}
+     */
+    seenNotification: (id: number, params: RequestParams = {}) =>
+      this.request<NotificationResponse, any>({
+        path: `/admin/notification/${id}`,
+        method: "PUT",
         format: "json",
         ...params,
       }),
@@ -1481,6 +1536,22 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         path: `/admin/user`,
         method: "GET",
         query: query,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Returns user data
+     *
+     * @tags User
+     * @name GetUserById
+     * @summary Get user information
+     * @request GET:/admin/user/{id}
+     */
+    getUserById: (id: number, params: RequestParams = {}) =>
+      this.request<UserResponse, any>({
+        path: `/admin/user/${id}`,
+        method: "GET",
         format: "json",
         ...params,
       }),

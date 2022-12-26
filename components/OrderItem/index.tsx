@@ -33,7 +33,7 @@ const OrderItem = ({ order, changeStatus }: Props) => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Món chưa nấu xong đâu. Check lại với bếp đơn này nhá!',
+          text: 'Món chưa nấu xong đâu. Check lại với admin đơn này nhá!',
         }).catch(err => {
           console.log(err)
         })
@@ -66,7 +66,7 @@ const OrderItem = ({ order, changeStatus }: Props) => {
             </div>
           )}
         </div>
-        {order.status == 2 && (
+        {order.status === 2 ? (
           <div className="action-box ml-auto flex gap-2">
             <a
               href={`tel:${order.phone}`}
@@ -84,22 +84,22 @@ const OrderItem = ({ order, changeStatus }: Props) => {
               <IoCheckmark color="white" size={20} />
             </button>
           </div>
-        )}
+        ): <></>}
       </div>
       <div
         className={`detail-pane pt-4 overflow-hidden duration-300 transition-all ease-linear ${
           active ? "h-[160px]" : "h-[0]"
         }`}
       >
-        <div className="dishes-list">
-          <h2 className="mb-2 text-[12px] font-semibold text-gray-900 dark:text-white">
-            Danh sách món ăn:
-          </h2>
+        <div className="dishes-list mt-4">
+          {/*<h2 className="mb-2 text-base font-semibold text-gray-900 dark:text-white">*/}
+          {/*  Danh sách món ăn:*/}
+          {/*</h2>*/}
           <ul className="space-y-2 max-w-md list-disc list-inside text-gray-500 dark:text-gray-400 font-pr">
             {order ? (
               // @ts-ignore
               order.dishes.map((item: any, index: number) => (
-                <li key={index} className="text-[12px] flex justify-between">
+                <li key={index} className="text-base flex justify-between">
                   <span>{item.name}</span>
                   <span>x{item.pivot.quantity}</span>
                 </li>
@@ -108,12 +108,6 @@ const OrderItem = ({ order, changeStatus }: Props) => {
               <p>Loading...</p>
             )}
           </ul>
-          <hr className="my-4" />
-          <div className="total font-pr text-[14px] flex justify-between text-purple font-semibold">
-            <span>Tổng tiền</span>
-            {/* @ts-ignore */}
-            <span className=" font-pr">VND {order.total}</span>
-          </div>
         </div>
       </div>
       <button
