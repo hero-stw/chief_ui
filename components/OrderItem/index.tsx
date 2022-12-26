@@ -87,8 +87,8 @@ const OrderItem = ({ order, changeStatus }: Props) => {
         ): <></>}
       </div>
       <div
-        className={`detail-pane pt-4 overflow-hidden duration-300 transition-all ease-linear ${
-          active ? "h-[160px]" : "h-[0]"
+        className={`detail-pane py-4 overflow-hidden duration-300 transition-all ease-linear ${
+          active ? "h-auto" : "h-[0]"
         }`}
       >
         <div className="dishes-list mt-4">
