@@ -61,7 +61,7 @@ const Dashboard: NextPageWithLayout = (props: DashboardProp) => {
       }
     });
   };
-  console.log(dataOrder);
+  console.log(dataOrder);``
   return (
     <>
       <AuthLoader>

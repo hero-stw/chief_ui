@@ -9,6 +9,9 @@
   --yell: #ffcb40;
   --font-primary: "Roboto Flex", sans-serif;
 }
+ * {
+   font-family: "Roboto Flex", sans-serif;
+ }
 
 .text-purple {
   color: var(--purple);

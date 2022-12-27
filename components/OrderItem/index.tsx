@@ -68,12 +68,12 @@ const OrderItem = ({ order, changeStatus }: Props) => {
         </div>
         {order.status === 2 ? (
           <div className="action-box ml-auto flex gap-2">
-            <a
-              href={`tel:${order.phone}`}
-              className="call-btn bg-[#34A853] p-2 rounded-full "
-            >
-              <IoCallOutline color="white" size={20} />
-            </a>
+            {/*<a*/}
+            {/*  href={`tel:${order.phone}`}*/}
+            {/*  className="call-btn bg-[#34A853] p-2 rounded-full "*/}
+            {/*>*/}
+            {/*  <IoCallOutline color="white" size={20} />*/}
+            {/*</a>*/}
             {/* <button className="call-btn bg-purple p-2 rounded-full ">
             <IoChatboxEllipsesOutline color="white" size={20} />
           </button> */}
