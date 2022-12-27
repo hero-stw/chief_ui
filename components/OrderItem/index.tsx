@@ -62,6 +62,9 @@ const OrderItem = ({ order, changeStatus }: Props) => {
                 {waitingTime > (order.location.distance * 70) / 100 && (
                   <StatusBadge color="pending" title="Chờ lâu" />
                 )}
+                {
+                  order.location?.distance == 0 && <StatusBadge color="success" title="Giao tại quầy" />
+                }
               </div>
             </div>
           )}
